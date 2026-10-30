@@ -24,7 +24,7 @@ function validarUsuario(nome: unknown, nascimento: unknown): string | null {
 }
 
 // GET /usuarios: lista todos os usuários cadastrados.
-app.get("/usuarios", (_request: Request, response: Response) => {
+app.get("/usuarios", (request: Request, response: Response) => {
   response.json(usuarioDAO.readAll());
 });
 
