@@ -1,4 +1,63 @@
-# node-typescript-bd-sqlite-05-dao
+# API CRUD com Node.js, TypeScript, Express, SQLite e DAO
+
+Este projeto demonstra como separar uma API HTTP das regras de acesso ao banco de dados SQLite. O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os comandos SQL.
+
+## Tecnologias
+
+- Node.js 24
+- TypeScript
+- Express
+- SQLite integrado ao Node.js (`node:sqlite`)
+- REST Client para o VS Code
+
+## Como executar
+
+Instale as dependências e inicie o servidor:
+
+```bash
+npm install
+npm start
+```
+
+A API ficará disponível em `http://localhost:3000`. Para alterar a porta, defina a variável `PORT`; para alterar o banco, defina `SQLITE_DB_PATH`.
+
+## Rotas da API
+
+| Método | Rota | Finalidade |
+|---|---|---|
+| `GET` | `/` | Verifica se a API está ativa |
+| `GET` | `/usuarios` | Lista todos os usuários |
+| `GET` | `/usuarios/:id` | Busca um usuário pelo id |
+| `POST` | `/usuarios` | Cadastra um usuário |
+| `PUT` | `/usuarios/:id` | Atualiza um usuário existente |
+| `DELETE` | `/usuarios/:id` | Remove um usuário |
+
+Exemplo de criação de usuário:
+
+```json
+{
+  "nome": "Ana Silva",
+  "nascimento": "2000-06-07"
+}
+```
+
+## Testando com REST Client
+
+1. Instale a extensão **REST Client** no VS Code.
+2. Inicie a API com `npm start`.
+3. Abra o arquivo `teste.http`.
+4. Clique em **Send Request** acima da requisição desejada.
+
+## Estrutura e padrão DAO
+
+- `src/Main.ts`: configura o servidor Express e os endpoints.
+- `src/model/Usuario.ts`: representa um usuário e seus atributos.
+- `src/dao/UsuarioDAO.ts`: traduz a operação do domínio em comandos SQL.
+- `src/database/ConnectionFactory.ts`: centraliza a abertura da conexão SQLite.
+
+O padrão DAO evita que rotas e regras HTTP misturem SQL diretamente. Assim, a mesma classe de acesso pode ser reutilizada por interfaces de linha de comando, APIs ou outras aplicações.
+
+## SQLite Viewer
 
 ### SQLite Viewer
 
@@ -237,33 +296,14 @@ Conexão com SQLite estabelecida!
         DATA DE NASCIMENTO: 2009-11-15
 ```
 
-# Exercício
+## Exercícios
 
-Em Node.js com TypeScript, escreva um algoritmo que:
+1. **Biblioteca:** implemente o CRUD de livros e autores. Crie as entidades `Autor(id, nome, nacionalidade)` e `Livro(id, titulo, ano_publicacao, id_autor)`, incluindo rotas REST para pesquisar livros pelo autor.
 
-1. Cadastre veículos no banco de dados SQLite, segundo o padrão "Data Access Object" (DAO). O algoritmo deve permitir que o usuário cadastre quantos veículos forem necessários. A classe Veiculo deve possuir as propriedades: marca, modelo, número do chassi, placa e cor. Após cadastrar todos os veículos, o algoritmo deve permitir:
-  - Consultar os veículos cadastrados.
-  - Atualizar os veículos cadastrados.
-  - Excluir os veículos cadastrados.
+2. **Hotel:** implemente o CRUD de quartos, hóspedes e reservas. Crie `Quarto(id, numero, tipo, diaria)`, `Hospede(id, nome, documento)` e `Reserva(id, id_quarto, id_hospede, entrada, saida, total)`. Garanta que uma alteração não apague o vínculo do quarto e do hóspede.
 
-2. Implemente o CRUD (Create, Read, Update, Delete) do banco de dados de uma padaria, empregando o padrão "Data Access Object" (DAO). Considere as tabelas:
-  - Cliente(id_cliente, nome),
-  - Pedido(id_pedido, id_cliente, data_pedido, total),
-  - Produto(id_produto, nome, preco) e
-  - ItemPedido(id_pedido, id_produto, quantidade).
+3. **Streaming:** modele filmes, categorias e assinaturas. Desenvolva os DAOs de `Categoria`, `Filme` e `Assinatura`, com uma rota que liste os filmes de uma categoria selecionada pelo id.
 
+4. **Oficina mecânica:** implemente o cadastro de clientes, veículos e ordens de serviço. Considere `Cliente(id, nome, telefone)`, `Veiculo(id, placa, modelo, id_cliente)` e `OrdemServico(id, id_veiculo, descricao, valor, status)`, incluindo atualização exclusiva do status.
 
-3. Implemente o CRUD (Create, Read, Update, Delete) do banco de dados de uma agência de viagens, empregando o padrão "Data Access Object" (DAO). Considere as tabelas:
-  - Cliente(id_cliente, nome),
-  - Reserva(id_reserva, id_cliente, id_destino, data_viagem, valor) e
-  - Destino(id_destino, nome_destino, pais).
-
-4. Implemente o CRUD (Create, Read, Update, Delete) do banco de dados de uma clínica médica, empregando o padrão "Data Access Object" (DAO). Considere as tabelas:
-  - Paciente(id_paciente, nome),
-  - Medico(id_medico, nome, especialidade) e
-  - Consulta(id_consulta, id_paciente, id_medico, data_consulta, valor).
-
-5. Implemente o CRUD (Create, Read, Update, Delete) do banco de dados de uma farmácia, empregando o padrão "Data Access Object" (DAO). Considere as tabelas:
-  - Medicamento(id_medicamento, nome, preco),
-  - Fornecedor(id_fornecedor, nome, cidade) e
-  - Compra(id_compra, id_medicamento, id_fornecedor, quantidade, data_compra).
+5. **Festival de música:** crie recursos para palcos, artistas e apresentações. Modele `Palco(id, nome, capacidade)`, `Artista(id, nome, genero_musical)` e `Apresentacao(id, id_palco, id_artista, data_apresentacao, horario, duracao)`, com uma API para consultar a programação de um dia informado.

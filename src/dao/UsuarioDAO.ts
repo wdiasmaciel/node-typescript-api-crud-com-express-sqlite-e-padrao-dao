@@ -56,46 +56,34 @@ export class UsuarioDAO {
   read(id: number): Usuario | null {
     return this.withConnection((connection) => {
       const row = connection
-        .prepare(
-          "SELECT id, nome, nascimento FROM usuario WHERE id = ?"
-        )
+        .prepare("SELECT id, nome, nascimento FROM usuario WHERE id = ?")
         .get(id);
 
       if (!row) {
-        console.log("Usuário não encontrado!");
         return null;
       }
 
-      if (
-        typeof row.id !== "number" ||
-        typeof row.nome !== "string" ||
-        (typeof row.nascimento !== "string" && row.nascimento !== null)
-      ) {
-        throw new Error("O banco retornou um registro de usuário inválido.");
-      }
+      return this.mapRowToUsuario(row);
+    });
+  }
 
-      const usuario = new Usuario(row.id, row.nome, row.nascimento);
-      console.log(`
-        USUÁRIO LIDO DO BANCO DE DADOS: \n
-        ID: ${usuario.id}\n
-        NOME: ${usuario.nome}\n
-        DATA DE NASCIMENTO: ${usuario.nascimento}
-      `);
-      return usuario;
+  // Método para listar todos os usuários; usado pela rota GET /usuarios.
+  readAll(): Usuario[] {
+    return this.withConnection((connection) => {
+      const rows = connection
+        .prepare("SELECT id, nome, nascimento FROM usuario ORDER BY id")
+        .all();
+      return rows.map((row) => this.mapRowToUsuario(row));
     });
   }
 
   // Método para atualizar/modificar um registro inserido na tabela Usuário:
-  update(usuario: Usuario): void {
-    this.withConnection((connection) => {
-      connection
-        .prepare(
-          "UPDATE usuario SET nome = ?, nascimento = ? WHERE id = ?"
-        )
+  update(usuario: Usuario): boolean {
+    return this.withConnection((connection) => {
+      const result = connection
+        .prepare("UPDATE usuario SET nome = ?, nascimento = ? WHERE id = ?")
         .run(usuario.nome, usuario.nascimento, usuario.id);
-      console.log(
-        `O usuário ${usuario.nome} foi atualizado no banco de dados!`
-      );
+      return result.changes > 0;
     });
   }
 
@@ -107,6 +95,18 @@ export class UsuarioDAO {
         .run(usuario.id);
       console.log(`O usuario ${usuario.nome} foi removido do BD.`);
     });
+  }
+
+  private mapRowToUsuario(row: Record<string, unknown>): Usuario {
+    if (
+      typeof row.id !== "number" ||
+      typeof row.nome !== "string" ||
+      (typeof row.nascimento !== "string" && row.nascimento !== null)
+    ) {
+      throw new Error("O banco retornou um registro de usuário inválido.");
+    }
+
+    return new Usuario(row.id, row.nome, row.nascimento);
   }
 
   private withConnection<T>(operation: (connection: DatabaseSync) => T): T {
