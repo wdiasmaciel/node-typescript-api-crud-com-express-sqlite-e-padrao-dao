@@ -482,6 +482,23 @@ npm install
 npm start
 ```
 
+Saída:
+
+```text
+npm start
+
+> node-typescript-api-crud-com-express-sqlite-e-padrao-dao@1.0.0 start
+> npm run dev
+
+
+> node-typescript-api-crud-com-express-sqlite-e-padrao-dao@1.0.0 dev
+> node --env-file-if-exists=.env --watch ./src/Main.ts
+
+Conexão com SQLite estabelecida!
+Tabela 'usuario' criada ou já existe!
+API disponível em http://localhost:3000
+```
+
 A API ficará disponível em `http://localhost:3000`. 
 
 1. Para alterar a porta, defina a variável `PORT`; 
