@@ -18,7 +18,7 @@ No Codespace, instalar a extensão (plugin) VS Code `SQLite Viewer`:
 
 ![Alt: extensão (plugin) SQLite Viewer.](SQLiteViewerForVSCode.png)
 
-### Iniciar um projeto `Node.js`:
+### Comandos Iniciais
 
 ```bash
 sudo apt update
@@ -39,6 +39,8 @@ npm install -g npm@11.19.0
 ```bash
 npm -v
 ```
+
+### Iniciar um projeto `Node.js`:
 
 ```bash
 npm init -y
