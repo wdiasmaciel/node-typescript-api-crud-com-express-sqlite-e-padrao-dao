@@ -462,119 +462,15 @@ export class ConnectionFactory {
 }
 ```
 
-### Executar
- 
-```bash
-npm start
-```
-
-Saída:
-```text
-
-> typescript-bd-sqlite-05-dao@1.0.0 start
-> npm run dev
-
-
-> typescript-bd-sqlite-05-dao@1.0.0 dev
-> node --env-file-if-exists=.env --watch ./src/Main.ts
-
-Conexão com SQLite estabelecida!
-Tabela 'usuario' criada ou já existe!
-Conexão com SQLite estabelecida!
-
-        USUÁRIO GRAVADO NO BANCO DE DADOS: 
-
-        ID: 1
-
-        NOME: Ana
-
-        DATA DE NASCIMENTO: 2000-06-07
-      
-Conexão com SQLite estabelecida!
-
-        USUÁRIO LIDO DO BANCO DE DADOS: 
-
-        ID: 1
-
-        NOME: Ana
-
-        DATA DE NASCIMENTO: 2000-06-07
-      
-Conexão com SQLite estabelecida!
-O usuário Ana Silva foi atualizado no banco de dados!
-Conexão com SQLite estabelecida!
-
-        USUÁRIO LIDO DO BANCO DE DADOS: 
-
-        ID: 1
-
-        NOME: Ana Silva
-
-        DATA DE NASCIMENTO: 2000-06-07
-      
-Conexão com SQLite estabelecida!
-O usuario Ana Silva foi removido do BD.
-Conexão com SQLite estabelecida!
-Usuário não encontrado!
-Conexão com SQLite estabelecida!
-
-        USUÁRIO GRAVADO NO BANCO DE DADOS: 
-
-        ID: 2
-
-        NOME: Bruna
-
-        DATA DE NASCIMENTO: 2006-08-07
-      
-Conexão com SQLite estabelecida!
-
-        USUÁRIO LIDO DO BANCO DE DADOS: 
-
-        ID: 2
-
-        NOME: Bruna
-
-        DATA DE NASCIMENTO: 2006-08-07
-      
-Conexão com SQLite estabelecida!
-O usuário Bruna Gomes foi atualizado no banco de dados!
-Conexão com SQLite estabelecida!
-
-        USUÁRIO LIDO DO BANCO DE DADOS: 
-
-        ID: 2
-
-        NOME: Bruna Gomes
-
-        DATA DE NASCIMENTO: 2006-08-07
-      
-Conexão com SQLite estabelecida!
-
-        USUÁRIO GRAVADO NO BANCO DE DADOS: 
-
-        ID: 3
-
-        NOME: Carlos Pereira
-
-        DATA DE NASCIMENTO: 2009-11-15
-      
-Conexão com SQLite estabelecida!
-
-        USUÁRIO LIDO DO BANCO DE DADOS: 
-
-        ID: 3
-
-        NOME: Carlos Pereira
-
-        DATA DE NASCIMENTO: 2009-11-15
-```
-
-## Como executar
+## Executar
 
 Instale as dependências e inicie o servidor:
 
 ```bash
 npm install
+```
+
+```bash
 npm start
 ```
 
