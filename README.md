@@ -103,35 +103,12 @@ Para um caminho personalizado, a pasta indicada deve existir e permitir gravaç�
 
 Caso seja necessário, execute `CTRL + SHIFT + P`, informe `TypeScript: Restart TS Server` e pressione `<ENTER>`. Isso atualiza os diagnósticos do TypeScript no VS Code.
 
-### "type": "module",`
+### package.json
 
 No arquivo `package.json`, substituir `"type": "commonjs",`  por `"type": "module",`:
 
-```json
-{
-  "name": "typescript-bd-sqlite-05-dao",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wdiasmaciel/node-typescript-bd-sqlite-05-dao.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/wdiasmaciel/node-typescript-bd-sqlite-05-dao/issues"
-  },
-  "homepage": "https://github.com/wdiasmaciel/node-typescript-bd-sqlite-05-dao#readme"
-}
-```
+Inserir as linhas:
 
-###  No arquivo `package.json`, inserir as linhas:
 ```json
     "dev": "node --env-file-if-exists=.env --watch ./src/Main.ts",
     "start": "npm run dev"
@@ -139,7 +116,7 @@ No arquivo `package.json`, substituir `"type": "commonjs",`  por `"type": "modul
 
 ```json
 {
-  "name": "typescript-bd-sqlite-05-dao",
+  "name": "node-typescript-api-crud-com-express-sqlite-e-padrao-dao",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
