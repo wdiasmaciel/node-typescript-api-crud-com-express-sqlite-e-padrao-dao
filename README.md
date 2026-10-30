@@ -1,0 +1,1 @@
+# node-typescript-api-crud-com-express-sqlite-e-padrao-dao
