@@ -43,7 +43,12 @@ app.get("/usuarios/:id", (request: Request, response: Response) => {
 
 // POST /usuarios: insere um novo usuário e devolve o registro com seu id.
 app.post("/usuarios", (request: Request, response: Response) => {
+  /*
+   * Se request.body.nascimento existir, seu valor será usado.
+   * Se a propriedade for undefined ou não existir, nascimento receberá null.
+   */
   const { nome, nascimento = null } = request.body as { nome?: unknown; nascimento?: unknown };
+
   const erro = validarUsuario(nome, nascimento);
 
   if (erro) {
@@ -58,7 +63,13 @@ app.post("/usuarios", (request: Request, response: Response) => {
 // PUT /usuarios/:id: substitui os dados informados para um usuário existente.
 app.put("/usuarios/:id", (request: Request, response: Response) => {
   const id = Number(request.params.id);
+
+  /*
+   * Se request.body.nascimento existir, seu valor será usado.
+   * Se a propriedade for undefined ou não existir, nascimento receberá null.
+   */
   const { nome, nascimento = null } = request.body as { nome?: unknown; nascimento?: unknown };
+  
   const erro = validarUsuario(nome, nascimento);
 
   if (erro) {
@@ -92,12 +103,12 @@ app.delete("/usuarios/:id", (request: Request, response: Response) => {
 });
 
 // Resposta simples para verificar se o serviço está disponível.
-app.get("/", (_request: Request, response: Response) => {
+app.get("/", (request: Request, response: Response) => {
   response.json({ mensagem: "API de usuários ativa", recursos: "/usuarios" });
 });
 
 // Trata falhas inesperadas sem interromper o servidor.
-app.use((error: unknown, _request: Request, response: Response, _next: NextFunction) => {
+app.use((error: unknown, request: Request, response: Response, next: NextFunction) => {
   console.error(error);
   response.status(500).json({ mensagem: "Erro interno do servidor." });
 });
