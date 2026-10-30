@@ -55,14 +55,22 @@ Crie o arquivo `tsconfig.json` com o conteúdo abaixo:
 ```json
 {
   "compilerOptions": {
+    // Versao de JavaScript gerada e recursos de linguagem disponiveis.
     "target": "ES2022",
+    // Usa o sistema de modulos ESM/CommonJS definido pelo Node.js.
     "module": "NodeNext",
+    // Resolve importacoes seguindo as regras de modulos do Node.js.
     "moduleResolution": "NodeNext",
+    // Ativa todas as verificacoes rigorosas de tipos do TypeScript.
     "strict": true,
+    // Inclui as definicoes de tipos do Node.js.
     "types": ["node"],
+    // Permite importar arquivos usando a extensao .ts.
     "allowImportingTsExtensions": true,
+    // Nao gera arquivos JavaScript durante a compilacao.
     "noEmit": true
   },
+  // Inclui todos os arquivos TypeScript dentro da pasta src (em qualquer subpasta e em qualquer profundidade).
   "include": ["src/**/*.ts"]
 }
 ```
