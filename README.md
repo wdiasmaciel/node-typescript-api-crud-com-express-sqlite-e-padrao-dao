@@ -467,6 +467,14 @@ export class ConnectionFactory {
 Instale as dependências e inicie o servidor:
 
 ```bash
+npm install express
+```
+
+```bash
+npm install --save-dev @types/express
+```
+
+```bash
 npm install
 ```
 
