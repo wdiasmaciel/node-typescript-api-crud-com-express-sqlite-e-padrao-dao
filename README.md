@@ -103,7 +103,9 @@ Para um caminho personalizado, a pasta indicada deve existir e permitir gravaç�
 
 Caso seja necessário, execute `CTRL + SHIFT + P`, informe `TypeScript: Restart TS Server` e pressione `<ENTER>`. Isso atualiza os diagnósticos do TypeScript no VS Code.
 
-###  No arquivo `package.json`, substituir `"type": "commonjs",`  por `"type": "module",`:
+### "type": "module",`
+
+No arquivo `package.json`, substituir `"type": "commonjs",`  por `"type": "module",`:
 
 ```json
 {
