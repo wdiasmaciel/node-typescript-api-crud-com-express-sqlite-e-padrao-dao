@@ -1,6 +1,8 @@
 # API CRUD com Node.js, TypeScript, Express, SQLite e DAO
 
-Este projeto demonstra como separar uma API HTTP das regras de acesso ao banco de dados SQLite. O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os comandos SQL.
+Este projeto demonstra como separar uma API HTTP das regras de acesso ao banco de dados SQLite. 
+
+O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os comandos SQL.
 
 ## Tecnologias
 
