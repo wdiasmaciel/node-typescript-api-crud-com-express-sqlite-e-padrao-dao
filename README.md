@@ -83,6 +83,8 @@ node_modules/
 
 ### Variável de Ambiente
 
+Criar o arquivo `.env`.
+
 O arquivo `.env` é opcional e deve ficar na raiz do projeto. 
 
 Para definir um caminho personalizado para o banco, crie o arquivo com o conteúdo abaixo:
