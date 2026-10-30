@@ -530,7 +530,8 @@ Exemplo de criação de usuário:
 1. Instale a extensão **REST Client** no VS Code.
 2. Inicie a API com `npm start`.
 3. Criar o arquivo `teste.http`:
-```property
+
+```http
 ### API de usuários - arquivo REST Client
 @baseUrl = http://localhost:3000
 
