@@ -9,7 +9,7 @@ O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os c
 - Node.js
 - TypeScript
 - Express
-- SQLite integrado ao Node.js (`node:sqlite`)
+- SQLite 
 - Extensão REST Client para o VS Code
 
 ## SQLite Viewer
@@ -17,6 +17,12 @@ O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os c
 No Codespace, instalar a extensão (plugin) VS Code `SQLite Viewer`: 
 
 ![Alt: extensão (plugin) SQLite Viewer.](SQLiteViewerForVSCode.png)
+
+## Rest Client
+
+No Codespace, instalar a extensão (plugin) VS Code `REST Client`: 
+
+![Alt: extensão (plugin) REST Client.](RESTClient.png)
 
 ### Comandos Iniciais
 
