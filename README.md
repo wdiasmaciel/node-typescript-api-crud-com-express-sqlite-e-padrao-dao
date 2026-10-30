@@ -6,11 +6,11 @@ O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os c
 
 ## Tecnologias
 
-- Node.js 24
+- Node.js
 - TypeScript
 - Express
 - SQLite integrado ao Node.js (`node:sqlite`)
-- REST Client para o VS Code
+- Extensão REST Client para o VS Code
 
 ## Como executar
 
