@@ -12,56 +12,7 @@ O Express recebe as requisições, enquanto a classe `UsuarioDAO` concentra os c
 - SQLite integrado ao Node.js (`node:sqlite`)
 - Extensão REST Client para o VS Code
 
-## Como executar
-
-Instale as dependências e inicie o servidor:
-
-```bash
-npm install
-npm start
-```
-
-A API ficará disponível em `http://localhost:3000`. Para alterar a porta, defina a variável `PORT`; para alterar o banco, defina `SQLITE_DB_PATH`.
-
-## Rotas da API
-
-| Método | Rota | Finalidade |
-|---|---|---|
-| `GET` | `/` | Verifica se a API está ativa |
-| `GET` | `/usuarios` | Lista todos os usuários |
-| `GET` | `/usuarios/:id` | Busca um usuário pelo id |
-| `POST` | `/usuarios` | Cadastra um usuário |
-| `PUT` | `/usuarios/:id` | Atualiza um usuário existente |
-| `DELETE` | `/usuarios/:id` | Remove um usuário |
-
-Exemplo de criação de usuário:
-
-```json
-{
-  "nome": "Ana Silva",
-  "nascimento": "2000-06-07"
-}
-```
-
-## Testando com REST Client
-
-1. Instale a extensão **REST Client** no VS Code.
-2. Inicie a API com `npm start`.
-3. Abra o arquivo `teste.http`.
-4. Clique em **Send Request** acima da requisição desejada.
-
-## Estrutura e padrão DAO
-
-- `src/Main.ts`: configura o servidor Express e os endpoints.
-- `src/model/Usuario.ts`: representa um usuário e seus atributos.
-- `src/dao/UsuarioDAO.ts`: traduz a operação do domínio em comandos SQL.
-- `src/database/ConnectionFactory.ts`: centraliza a abertura da conexão SQLite.
-
-O padrão DAO evita que rotas e regras HTTP misturem SQL diretamente. Assim, a mesma classe de acesso pode ser reutilizada por interfaces de linha de comando, APIs ou outras aplicações.
-
 ## SQLite Viewer
-
-### SQLite Viewer
 
 No Codespace, instalar a extensão (plugin) VS Code `SQLite Viewer`: 
 
@@ -120,13 +71,19 @@ Crie o arquivo `.gitignore` com o conteúdo abaixo:
 node_modules/
 ```
 
-O arquivo `.env` é opcional e deve ficar na raiz do projeto. Para definir um caminho personalizado para o banco, crie o arquivo com o conteúdo abaixo:
+### Variável de Ambiente
+
+O arquivo `.env` é opcional e deve ficar na raiz do projeto. 
+
+Para definir um caminho personalizado para o banco, crie o arquivo com o conteúdo abaixo:
 
 ```txt
 SQLITE_DB_PATH=./src/database/banco_de_dados.db
 ```
 
-Se o arquivo `.env` não existir ou a variável de ambiente `SQLITE_DB_PATH` não estiver definida, a aplicação usará `src/database/teste.db`. Para um caminho personalizado, a pasta indicada deve existir e permitir gravação; o SQLite cria o arquivo do banco, mas não cria as pastas.
+Se o arquivo `.env` não existir ou a variável de ambiente `SQLITE_DB_PATH` não estiver definida, a aplicação usará `src/database/teste.db`. 
+
+Para um caminho personalizado, a pasta indicada deve existir e permitir gravação. **OBS**: o SQLite cria o arquivo do banco, mas não cria as pastas.
 
 Caso seja necessário, execute `CTRL + SHIFT + P`, informe `TypeScript: Restart TS Server` e pressione `<ENTER>`. Isso atualiza os diagnósticos do TypeScript no VS Code.
 
@@ -194,10 +151,11 @@ Caso seja necessário, execute `CTRL + SHIFT + P`, informe `TypeScript: Restart 
 
 ### Executar
  
-```bahs
+```bash
 npm start
 ```
 
+Saída:
 ```text
 
 > typescript-bd-sqlite-05-dao@1.0.0 start
@@ -298,6 +256,59 @@ Conexão com SQLite estabelecida!
         DATA DE NASCIMENTO: 2009-11-15
 ```
 
+## Como executar
+
+Instale as dependências e inicie o servidor:
+
+```bash
+npm install
+npm start
+```
+
+A API ficará disponível em `http://localhost:3000`. 
+
+1. Para alterar a porta, defina a variável `PORT`; 
+
+2. Para alterar o banco, defina `SQLITE_DB_PATH`.
+
+## Rotas da API
+
+| Método | Rota | Finalidade |
+|---|---|---|
+| `GET` | `/` | Verifica se a API está ativa |
+| `GET` | `/usuarios` | Lista todos os usuários |
+| `GET` | `/usuarios/:id` | Busca um usuário pelo id |
+| `POST` | `/usuarios` | Cadastra um usuário |
+| `PUT` | `/usuarios/:id` | Atualiza um usuário existente |
+| `DELETE` | `/usuarios/:id` | Remove um usuário |
+
+Exemplo de criação de usuário:
+
+```json
+{
+  "nome": "Ana Silva",
+  "nascimento": "2000-06-07"
+}
+```
+
+## Testando com REST Client
+
+1. Instale a extensão **REST Client** no VS Code.
+2. Inicie a API com `npm start`.
+3. Abra o arquivo `teste.http`.
+4. Clique em **Send Request** acima da requisição desejada.
+
+## Estrutura e padrão DAO
+
+- `src/Main.ts`: configura o servidor Express e os endpoints.
+- `src/model/Usuario.ts`: representa um usuário e seus atributos.
+- `src/dao/UsuarioDAO.ts`: traduz a operação do domínio em comandos SQL.
+- `src/database/ConnectionFactory.ts`: centraliza a abertura da conexão SQLite.
+
+1. O padrão DAO evita que rotas e regras HTTP misturem SQL diretamente. 
+
+2. Assim, a mesma classe de acesso pode ser reutilizada por interfaces de linha de comando, APIs ou outras aplicações.
+
 ## Exercícios
 
 1. **Biblioteca:** implemente o CRUD de livros e autores. Crie as entidades `Autor(id, nome, nacionalidade)` e `Livro(id, titulo, ano_publicacao, id_autor)`, incluindo rotas REST para pesquisar livros pelo autor.
@@ -308,4 +319,4 @@ Conexão com SQLite estabelecida!
 
 4. **Oficina mecânica:** implemente o cadastro de clientes, veículos e ordens de serviço. Considere `Cliente(id, nome, telefone)`, `Veiculo(id, placa, modelo, id_cliente)` e `OrdemServico(id, id_veiculo, descricao, valor, status)`, incluindo atualização exclusiva do status.
 
-5. **Festival de música:** crie recursos para palcos, artistas e apresentações. Modele `Palco(id, nome, capacidade)`, `Artista(id, nome, genero_musical)` e `Apresentacao(id, id_palco, id_artista, data_apresentacao, horario, duracao)`, com uma API para consultar a programação de um dia informado.
+5. **Festival de música:** crie recursos para palcos, artistas e apresentações. Modele `Palco(id, nome, capacidade)`, `Artista(id, nome, genero_musical)` e `Apresentacao(id, id_palco, id_artista, data_apresentacao, horario,duracao)`, com uma API para consultar a programação de um dia informado.
