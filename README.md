@@ -144,6 +144,17 @@ Inserir as linhas:
 }
 ```
 
+## Estrutura e padrão DAO
+
+- `src/Main.ts`: configura o servidor Express e os endpoints.
+- `src/model/Usuario.ts`: representa um usuário e seus atributos.
+- `src/dao/UsuarioDAO.ts`: traduz a operação do domínio em comandos SQL.
+- `src/database/ConnectionFactory.ts`: centraliza a abertura da conexão SQLite.
+
+1. O padrão DAO evita que rotas e regras HTTP misturem SQL diretamente. 
+
+2. Assim, a mesma classe de acesso pode ser reutilizada por interfaces de linha de comando, APIs ou outras aplicações.
+
 ### Executar
  
 ```bash
@@ -293,16 +304,6 @@ Exemplo de criação de usuário:
 3. Abra o arquivo `teste.http`.
 4. Clique em **Send Request** acima da requisição desejada.
 
-## Estrutura e padrão DAO
-
-- `src/Main.ts`: configura o servidor Express e os endpoints.
-- `src/model/Usuario.ts`: representa um usuário e seus atributos.
-- `src/dao/UsuarioDAO.ts`: traduz a operação do domínio em comandos SQL.
-- `src/database/ConnectionFactory.ts`: centraliza a abertura da conexão SQLite.
-
-1. O padrão DAO evita que rotas e regras HTTP misturem SQL diretamente. 
-
-2. Assim, a mesma classe de acesso pode ser reutilizada por interfaces de linha de comando, APIs ou outras aplicações.
 
 ## Exercícios
 
