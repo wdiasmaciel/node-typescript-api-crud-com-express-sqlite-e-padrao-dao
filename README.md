@@ -529,7 +529,57 @@ Exemplo de criação de usuário:
 
 1. Instale a extensão **REST Client** no VS Code.
 2. Inicie a API com `npm start`.
-3. Abra o arquivo `teste.http`.
+3. Criar o arquivo `teste.http`:
+```property
+### API de usuários - arquivo REST Client
+@baseUrl = http://localhost:3000
+
+### Verificar se a API está ativa
+GET {{baseUrl}}/
+
+### Listar todos os usuários
+GET {{baseUrl}}/usuarios
+
+### Buscar usuário pelo id
+GET {{baseUrl}}/usuarios/1
+
+### Criar usuário
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Ana Silva",
+  "nascimento": "2000-06-07"
+}
+
+### Criar usuário sem data de nascimento
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Bruna Gomes"
+}
+
+### Atualizar usuário
+PUT {{baseUrl}}/usuarios/1
+Content-Type: application/json
+
+{
+  "nome": "Ana Martins",
+  "nascimento": "2000-06-07"
+}
+
+### Excluir usuário
+DELETE {{baseUrl}}/usuarios/1
+
+### Testar validação de usuário inválido
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "nome": ""
+}
+```
 4. Clique em **Send Request** acima da requisição desejada.
 
 
